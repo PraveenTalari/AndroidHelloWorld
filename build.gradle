@@ -22,3 +22,10 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+//https://proandroiddev.com/how-do-i-setup-github-actions-for-my-gradle-or-android-project-17af6f2fac59
+tasks.register("runOnGitHub") { // 1
+    dependsOn(":app:lint", ":app:testDebugUnitTest")  // 2 ==> CUSTOMIZE THIS LINE
+    group = "custom"      // 3
+    description = "./gradlew runOnGitHub # runs on GitHub Action" //3
+}
