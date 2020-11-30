@@ -21,6 +21,15 @@ jobs:
         with:
           java-version: 8
 
+      - name: Build Debug APK
+          run: bash ./gradlew :app:assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v2
+        with:
+          name: App
+          path: ${{ github.workspace }}/app/build/outputs/apk/debug/app-debug.apk
+
       # Execute Gradle commands in GitHub Actions workflows
       # => https://github.com/marketplace/actions/gradle-command
       - uses: eskatos/gradle-command-action@v1
